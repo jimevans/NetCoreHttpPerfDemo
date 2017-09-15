@@ -13,11 +13,14 @@ namespace HttpPerfExampleFullFrameworkTester
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Starting test...");
             HttpCommandExecutor executor = new HttpCommandExecutor();
+
             executor.StartServer();
             string sessionId = StartSession(executor);
             NavigateToUrl(executor, sessionId, "http://www.google.com");
+
+            Console.WriteLine("Making 10 HTTP calls to localhost, logging the elapsed time...");
             for (int i = 0; i < 10; i++)
             {
                 GetPageTitle(executor, sessionId);

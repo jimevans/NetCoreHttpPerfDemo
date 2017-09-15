@@ -33,7 +33,7 @@ namespace HttpPerfDemo
             this.driverServiceProcess.Kill();
         }
 
-        public string MakeHttpRequest(Uri fullUri, string httpMethod, string requestBody)
+        public virtual string MakeHttpRequest(Uri fullUri, string httpMethod, string requestBody)
         {
             string responseString = string.Empty;
             HttpWebRequest request = HttpWebRequest.Create(fullUri) as HttpWebRequest;

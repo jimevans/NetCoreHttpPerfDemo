@@ -9,11 +9,19 @@ namespace HttpPerfExampleTester
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Starting test...");
             HttpCommandExecutor executor = new HttpCommandExecutor();
+            // If you're absolutely convinced that the problem is that the code
+            // is using HttpWebRequest/HttpWebResponse instead of System.Net.Http.HttpClient,
+            // you can uncomment the following line of code instead of the one
+            // immediately above. It makes no difference.
+            //HttpCommandExecutor executor = new AlternativeHttpCommandExecutor();
+
             executor.StartServer();
             string sessionId = StartSession(executor);
             NavigateToUrl(executor, sessionId, "http://www.google.com");
+
+            Console.WriteLine("Making 10 HTTP calls to localhost, logging the elapsed time...");
             for (int i = 0; i < 10; i++)
             {
                 GetPageTitle(executor, sessionId);
